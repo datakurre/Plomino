@@ -1,9 +1,10 @@
 var webpack = require('webpack');
+var merge = require('webpack-merge');
 var htmlWebpackPlugin = require('html-webpack-plugin');
 var copyWebpackPlugin = require('copy-webpack-plugin');
 var path = require('path');
 
-module.exports = {
+module.exports = merge(require('./webpack.patterns'), {
   entry: {
     vendor: './app/vendor',
     main: './app/main'
@@ -14,7 +15,7 @@ module.exports = {
   module: {
     loaders: [
     {
-      test: require.resolve('tinymce/tinymce'),
+      test: require.resolve('tinymce/js/tinymce/tinymce'),
       loaders: [
         'imports-loader?this=>window',
         'exports-loader?window.tinymce'
@@ -42,7 +43,7 @@ module.exports = {
   },
   plugins: [
     new copyWebpackPlugin([
-        { from: 'node_modules/tinymce/skins', to: 'skins' },
+        { from: 'node_modules/tinymce/js/tinymce/skins', to: 'skins' },
         { from: 'node_modules/bootstrap/dist/css/bootstrap.min.css', to: 'bootstrap/css' },
         { from: 'node_modules/bootstrap/dist/fonts', to: 'bootstrap/fonts' },
         { from: 'app/favicon.ico', to: '' }
@@ -61,4 +62,4 @@ module.exports = {
   node: {
     fs: "empty"
   }
-};
+});

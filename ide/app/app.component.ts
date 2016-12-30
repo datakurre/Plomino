@@ -52,6 +52,13 @@ import { IField } from './interfaces';
 // Utility Components
 import { PlominoModalComponent } from './utility';
 
+// Patterns
+import Modal from 'mockup-patterns-modal';
+import TinyMCE from 'mockup-patterns-tinymce';
+
+new Modal();
+new TinyMCE();
+
 import 'lodash';
 
 declare let _: any;
